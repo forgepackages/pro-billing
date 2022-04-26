@@ -1,0 +1,35 @@
+name: deps
+
+on:
+  schedule:
+  - cron: 0 0 1 * *
+  workflow_dispatch: {}
+
+jobs:
+  deps:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: "3.9"
+
+    - name: Set up Forge Pro repo access
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+        ssh-private-key: ${{ secrets.FORGE_PRO_PRIVATE_KEY }}
+
+    - name: Install dependencies
+      run: |
+        pip install -U pip poetry
+        ./scripts/install
+
+    - name: Install deps
+      run: curl https://deps.app/install.sh | bash -s -- -b $HOME/bin
+
+    - name: Run deps
+      run: $HOME/bin/deps ci
+      env:
+        DEPS_TOKEN: ${{ secrets.DEPS_TOKEN }}
+        DEPS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "project"
+version = "0.0.0"
+description = ""
+authors = []
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+forge = "<1.0.0"
+forge-pro = {git = "ssh://git@github.com/django-forge/forge-pro.git", rev="5d3b773"}
+
+PyJWT = "^2.3.0"
+cryptography = "^36.0.1"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
