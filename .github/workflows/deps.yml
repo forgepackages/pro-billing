@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -U pip poetry
-        ./scripts/install
+        POETRY_VIRTUALENVS_IN_PROJECT=true poetry install
 
     - name: Install deps
       run: curl https://deps.app/install.sh | bash -s -- -b $HOME/bin
