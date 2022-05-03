@@ -10,6 +10,10 @@ INSTALLED_APPS = INSTALLED_APPS + [
     "forgepro.stafftoolbar",
 ]
 
+MIDDLEWARE = MIDDLEWARE + [
+    "forgepro.stafftoolbar.querystats.QueryStatsMiddleware",
+]
+
 TIME_ZONE = "America/Chicago"
 
 STRIPE_PRICE_ID = environ["STRIPE_PRICE_ID"]
