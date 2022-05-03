@@ -266,7 +266,7 @@ stripe = "^2.65.0"
 type = "git"
 url = "ssh://git@github.com/django-forge/forge-pro.git"
 reference = "master"
-resolved_reference = "af8480693b08312650f11e6cdefd18548a82aade"
+resolved_reference = "581bc5783461623346948ff08ee62008ff262d82"
 
 [[package]]
 name = "gunicorn"
