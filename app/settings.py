@@ -8,10 +8,13 @@ INSTALLED_APPS = INSTALLED_APPS + [
     "forgepro.sentry",
     "forgepro.stripe",
     "forgepro.stafftoolbar",
+    "forgepro.impersonate",
 ]
 
 MIDDLEWARE = MIDDLEWARE + [
-    "forgepro.stafftoolbar.querystats.QueryStatsMiddleware",
+    "forgepro.stafftoolbar.QueryStatsMiddleware",
+    "forgepro.sentry.SentryFeedbackMiddleware",
+    "forgepro.impersonate.ImpersonateMiddleware",
 ]
 
 TIME_ZONE = "America/Chicago"

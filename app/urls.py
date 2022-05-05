@@ -22,6 +22,7 @@ from users.views import SignupView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("impersonate/", include("forgepro.impersonate.urls")),
     path("signup/", SignupView.as_view(), name="signup"),
     path("", include("django.contrib.auth.urls")),
     path("", include("projects.urls")),
