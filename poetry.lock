@@ -265,8 +265,8 @@ stripe = "^2.65.0"
 [package.source]
 type = "git"
 url = "ssh://git@github.com/django-forge/forge-pro.git"
-reference = "523a91f"
-resolved_reference = "523a91f857501a43a5da084a02a34e7deeefeda4"
+reference = "fc1107c"
+resolved_reference = "fc1107c0f926e2c6dd26d63987aaed570e1a3fb9"
 
 [[package]]
 name = "gunicorn"
@@ -818,7 +818,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "d3fee47ac25cffcab162714263b0e90ed65455c1121118af227e4ac292916ccb"
+content-hash = "076766d6086bb5094bd75b2057f85e4fc37205603a7ba12fc3c8ee69726264df"
 
 [metadata.files]
 appnope = [

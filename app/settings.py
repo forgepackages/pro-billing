@@ -9,6 +9,7 @@ INSTALLED_APPS = INSTALLED_APPS + [
     "forgepro.stripe",
     "forgepro.stafftoolbar",
     "forgepro.impersonate",
+    "forgepro.googleanalytics",
 ]
 
 MIDDLEWARE = MIDDLEWARE + [

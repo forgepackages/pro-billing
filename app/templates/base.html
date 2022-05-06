@@ -1,4 +1,4 @@
-{% load static sentry stafftoolbar %}
+{% load static sentry stafftoolbar googleanalytics %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,6 +10,7 @@
     <link href="{% static 'dist/tailwind.css' %}" rel="stylesheet">
 
     {% sentry_js %}
+    {% googleanalytics_js %}
 
     {% block head_scripts %}{% endblock %}
   </head>
