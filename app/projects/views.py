@@ -79,6 +79,8 @@ class ProjectTermsView(BaseLoggedInViewMixin, ProjectDetailMixin, generic.Update
 class ProjectCheckoutView(
     BaseLoggedInViewMixin, ProjectDetailMixin, StripeCheckoutView, generic.DetailView
 ):
+    html_title = "Checkout"
+
     def get(self, request, *args, **kwargs):
         """Adding a get so we can redirect straight to checkout from other forms"""
         return self.get_redirect_response(request)
@@ -122,6 +124,8 @@ class ProjectCheckoutView(
 class ProjectPortalView(
     BaseLoggedInViewMixin, ProjectDetailMixin, StripePortalView, generic.DetailView
 ):
+    html_title = "Portal"
+
     def get_portal_session_kwargs(self, request):
         project = self.get_object()
 
