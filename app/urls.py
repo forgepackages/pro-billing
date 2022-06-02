@@ -24,6 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("impersonate/", include("forgepro.impersonate.urls")),
     path("signup/", SignupView.as_view(), name="signup"),
+    path("quickstart.py", views.QuickstartRedirectView.as_view()),
     path("", include("django.contrib.auth.urls")),
     path("", include("projects.urls")),
     path("stripe-webhook/", views.StripeWebhookView.as_view()),

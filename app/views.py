@@ -1,5 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
+from django.views import View
 from forge.views.mixins import HTMLTitleMixin
+from forgepro.googleanalytics.events import GoogleAnalyticsEvent
 from forgepro.stripe.views import StripeWebhookView
 
 from projects.models import Project
@@ -32,3 +35,16 @@ class StripeWebhookView(StripeWebhookView):
 
             project.remove_github_usernames()
             project.remove_pro_keys()
+
+
+class QuickstartRedirectView(View):
+    def get(self, request, *args, **kwargs):
+        GoogleAnalyticsEvent(
+            name="quickstart",
+            params={
+                "user_agent": request.META.get("HTTP_USER_AGENT", ""),
+            },
+        ).send(request=request, validate=False)
+        return HttpResponseRedirect(
+            "https://raw.githubusercontent.com/django-forge/forge/master/quickstart.py"
+        )
