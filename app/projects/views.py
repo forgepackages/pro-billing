@@ -1,12 +1,13 @@
 from importlib.metadata import metadata
 
-import stripe
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
+
+import stripe
 from forgepro.stripe.views import StripeCheckoutView, StripePortalView
 
 from views import BaseLoggedInViewMixin

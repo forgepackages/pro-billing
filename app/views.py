@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views import View
+
 from forge.views.mixins import HTMLTitleMixin
 from forgepro.googleanalytics.events import GoogleAnalyticsEvent
 from forgepro.stripe.views import StripeWebhookView

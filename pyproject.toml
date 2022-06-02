@@ -10,7 +10,7 @@ python = "^3.9"
 forge = "<1.0.0"
 
 PyJWT = "^2.3.0"
-cryptography = "^36.0.1"
+cryptography = "^37.0.2"
 forge-pro = {git = "ssh://git@github.com/django-forge/forge-pro.git", rev = "cc7e931"}
 
 

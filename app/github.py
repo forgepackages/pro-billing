@@ -1,8 +1,9 @@
 import time
 
+from django.conf import settings
+
 import jwt
 import requests
-from django.conf import settings
 
 REPO_NAME = "django-forge/forge-pro"
 
