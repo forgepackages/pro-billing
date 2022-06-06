@@ -45,7 +45,7 @@ class QuickstartRedirectView(View):
             params={
                 "user_agent": request.META.get("HTTP_USER_AGENT", ""),
             },
-        ).send(request=request, validate=False)
+        ).send(request=request)
         return HttpResponseRedirect(
             "https://raw.githubusercontent.com/django-forge/forge/master/quickstart.py"
         )
