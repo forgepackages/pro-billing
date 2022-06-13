@@ -1,3 +1,3 @@
 # Forge Pro Billing
 
-This is the source code for [app.djangoforge.dev](https://app.djangoforge.dev).
+This is the source code for [billing.forgepackages.com](https://billing.forgepackages.com).

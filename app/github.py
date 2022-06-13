@@ -5,13 +5,13 @@ from django.conf import settings
 import jwt
 import requests
 
-REPO_NAME = "django-forge/forge-pro"
+REPO_NAME = "forgepackages/forge-pro"
 
 
 def get_github_session():
     """
     Gets an authenticated session as the specific app installation
-    with access to the django-forge repo
+    with access to the forgepackages repo
     """
     time_since_epoch_in_seconds = int(time.time())
 

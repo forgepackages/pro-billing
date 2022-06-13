@@ -30,6 +30,6 @@ urlpatterns = [
     path("stripe-webhook/", views.StripeWebhookView.as_view()),
     path(
         "favicon.ico",
-        RedirectView.as_view(url="https://www.djangoforge.dev/favicon.ico"),
+        RedirectView.as_view(url="https://www.forgepackages.com/favicon.ico"),
     ),
 ]

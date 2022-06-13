@@ -65,7 +65,7 @@ class ProjectTermsView(BaseLoggedInViewMixin, ProjectDetailMixin, generic.Update
         form.fields["github_usernames"].widget.attrs["required"] = True
         form.fields[
             "github_usernames"
-        ].help_text = "The user who will be invited to the django-forge repo."
+        ].help_text = "The user who will be invited to the forgepackages repo."
         return form
 
     def form_valid(self, form):

@@ -47,5 +47,5 @@ class QuickstartRedirectView(View):
             },
         ).send(request=request)
         return HttpResponseRedirect(
-            "https://raw.githubusercontent.com/django-forge/forge/master/quickstart.py"
+            "https://raw.githubusercontent.com/forgepackages/forge/master/quickstart.py"
         )
