@@ -1,22 +1,17 @@
 from forge.default_settings import *
 from forgepro.default_settings import *
 
-INSTALLED_APPS = INSTALLED_APPS + [
-    "projects",
-    "teams",
-    "users",
-    "forgepro.sentry",
-    "forgepro.stripe",
-    "forgepro.stafftoolbar",
-    "forgepro.impersonate",
-    "forgepro.googleanalytics",
-]
+INSTALLED_APPS = (
+    INSTALLED_APPS
+    + [
+        "projects",
+        "teams",
+        "users",
+    ]
+    + FORGEPRO_APPS
+)
 
-MIDDLEWARE = MIDDLEWARE + [
-    "forgepro.stafftoolbar.QueryStatsMiddleware",
-    "forgepro.sentry.SentryFeedbackMiddleware",
-    "forgepro.impersonate.ImpersonateMiddleware",
-]
+MIDDLEWARE = MIDDLEWARE + FORGEPRO_MIDDLEWARE
 
 TIME_ZONE = "America/Chicago"
 
