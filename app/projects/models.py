@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
@@ -13,7 +15,9 @@ from github import (
 
 
 class Project(TimestampModel, UUIDModel, StripeModel):
-    name = models.CharField(max_length=255)
+    name = models.SlugField(
+        unique=True, max_length=255, help_text="Unique slug across all projects"
+    )
     team = models.ForeignKey(
         "teams.Team", on_delete=models.CASCADE, related_name="projects"
     )
@@ -26,6 +30,8 @@ class Project(TimestampModel, UUIDModel, StripeModel):
 
     pro_private_key = models.TextField(blank=True)
     pro_public_key = models.TextField(blank=True)
+
+    packages_token = models.UUIDField(default=uuid.uuid4)
 
     # Person (people) who will be invited to repo for this project
     github_usernames = ArrayField(

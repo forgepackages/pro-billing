@@ -12,6 +12,7 @@ forge = "<1.0.0"
 PyJWT = "^2.3.0"
 cryptography = "^37.0.2"
 forge-pro = {git = "ssh://git@github.com/forgepackages/forge-pro.git", rev = "bb7824d"}
+django-hosts = "^5.1"
 
 
 [build-system]

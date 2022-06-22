@@ -9,11 +9,14 @@
     <div class="p-4 sm:px-6">
         <form method="post">
             {% csrf_token %}
-            <div class="flex items-end">
+            <div class="flex items-start">
                 <div class="flex-grow">
                     {{ form }}
                 </div>
-                <button type="submit" class="px-4 py-2 ml-2 text-white bg-orange-500 rounded-md hover:bg-orange-600">Create →</button>
+                <div class="flex flex-col">
+                    <label class="text-sm">&nbsp;</label>
+                    <button type="submit" class="px-4 py-2 mt-1 ml-2 text-white bg-orange-500 rounded-md hover:bg-orange-600">Create →</button>
+                </div>
             </div>
         </form>
     </div>
