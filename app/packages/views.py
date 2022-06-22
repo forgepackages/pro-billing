@@ -2,6 +2,7 @@ import base64
 import logging
 
 from django.core.cache import cache
+from django.core.exceptions import ValidationError
 from django.http import Http404, HttpResponse, StreamingHttpResponse
 from django.utils.functional import cached_property
 from django.views.generic import DetailView, ListView
@@ -15,9 +16,67 @@ from .models import Package
 logger = logging.getLogger(__name__)
 
 
+def is_authenticated_user(http_username, http_password):
+    try:
+        user = User.objects.get(username=http_username, packages_token=http_password)
+    except (User.DoesNotExist, ValidationError):
+        # Invalid uuids can throw a validation error
+        return False
+
+    has_active_projects = Project.objects.filter(
+        status="active",
+        team_id__in=user.teams.values_list("id", flat=True),
+    ).exists()
+
+    return has_active_projects
+
+
+def is_authenticated_project(http_username, http_password):
+    try:
+        Project.objects.get(
+            name=http_username, packages_token=http_password, status="active"
+        )
+    except (Project.DoesNotExist, ValidationError):
+        # Invalid uuids can throw a validation error
+        return False
+
+    return True
+
+
+def is_authenticated(request):
+    if request.user.is_authenticated:
+        return True
+
+    auth_header = request.META.get("HTTP_AUTHORIZATION", "")
+    if auth_header:
+        auth_type, auth_value = auth_header.split(" ", 1)
+        if auth_type == "Basic":
+            username, password = (
+                base64.b64decode(auth_value).decode("utf-8").split(":", 1)
+            )
+            if username and password:
+                # Can authenticate as a user (development)
+                if is_authenticated_user(username, password):
+                    logger.info(f"packages_auth username={username}")
+                    return True
+
+                # Or as a project (deployment)
+                if is_authenticated_project(username, password):
+                    logger.info(f"packages_auth project={username}")
+                    return True
+
+    return False
+
+
 class PypiPackageListView(ListView):
     model = Package
     template_name = "packages/pypi_list.html"
+
+    def get(self, request, *args, **kwargs):
+        if not is_authenticated(request):
+            return HttpResponse("Unauthorized", status=401)
+
+        return super().get(request, *args, **kwargs)
 
 
 class PypiPackageDetailView(DetailView):
@@ -26,42 +85,8 @@ class PypiPackageDetailView(DetailView):
     slug_field = "name"
     slug_url_kwarg = "name"
 
-    def is_authenticated(self, request):
-        if request.user.is_authenticated:
-            return True
-
-        auth_header = request.META.get("HTTP_AUTHORIZATION", "")
-        if auth_header:
-            auth_type, auth_value = auth_header.split(" ", 1)
-            if auth_type == "Basic":
-                username, password = (
-                    base64.b64decode(auth_value).decode("utf-8").split(":", 1)
-                )
-                if username and password:
-                    # Can authenticate as a user (development)
-                    try:
-                        user = User.objects.get(
-                            username=username, packages_token=password
-                        )
-                        logger.info(f"packages_auth username={user.username}")
-                        return True
-                    except User.DoesNotExist:
-                        pass
-
-                    # Or as a project (deployment)
-                    try:
-                        project = Project.objects.get(
-                            name=username, packages_token=password, status="active"
-                        )
-                        logger.info(f"packages_auth project={project.name}")
-                        return True
-                    except Project.DoesNotExist:
-                        pass
-
-        return False
-
     def get(self, request, *args, **kwargs):
-        if not self.is_authenticated(request):
+        if not is_authenticated(request):
             return HttpResponse("Unauthorized", status=401)
 
         return super().get(request, *args, **kwargs)
@@ -111,7 +136,7 @@ class PypiPackageDetailView(DetailView):
 
 class PypiPackageFilenameView(PypiPackageDetailView):
     def get(self, request, *args, **kwargs):
-        if not self.is_authenticated(request):
+        if not is_authenticated(request):
             return HttpResponse("Unauthorized", status=401)
 
         try:
