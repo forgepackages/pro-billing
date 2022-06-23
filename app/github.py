@@ -5,8 +5,6 @@ from django.conf import settings
 import jwt
 import requests
 
-REPO_NAME = "forgepackages/forge-pro"
-
 
 def get_github_session():
     """
@@ -41,60 +39,20 @@ def get_github_session():
 # https://docs.github.com/en/rest/reference/collaborators#invitations
 
 
-def invite_username_to_repo(username):
+def invite_username_to_repo(username, repo):
     """
     You are limited to sending 50 invitations to a repository per 24 hour period.
     https://docs.github.com/en/rest/reference/collaborators#add-a-repository-collaborator
     """
     response = get_github_session().put(
-        f"https://api.github.com/repos/{REPO_NAME}/collaborators/{username}",
+        f"https://api.github.com/repos/{repo}/collaborators/{username}",
         json={"permission": "pull"},
     )
     response.raise_for_status()
 
 
-def remove_username_from_repo(username):
+def remove_username_from_repo(username, repo):
     response = get_github_session().delete(
-        f"https://api.github.com/repos/{REPO_NAME}/collaborators/{username}",
+        f"https://api.github.com/repos/{repo}/collaborators/{username}",
     )
     response.raise_for_status()
-
-
-def get_deploy_keys_for_repo():
-    """
-    https://docs.github.com/en/rest/reference/repos#list-deploy-keys
-    """
-    next_url = f"https://api.github.com/repos/{REPO_NAME}/keys"
-    keys = []
-    while next_url:
-        response = get_github_session().get(next_url, params={"per_page": 100})
-        response.raise_for_status()
-        keys += response.json()
-        next_url = response.links.get("next", {}).get("url")
-    return keys
-
-
-def add_deploy_key_to_repo(public_key, title):
-    """
-    https://docs.github.com/en/rest/reference/repos#add-a-deploy-key
-    """
-    response = get_github_session().post(
-        f"https://api.github.com/repos/{REPO_NAME}/keys",
-        json={"key": public_key, "title": title, "read_only": True},
-    )
-    response.raise_for_status()
-
-
-def remove_deploy_key_from_repo(public_key):
-    """
-    https://docs.github.com/en/rest/reference/repos#remove-a-deploy-key
-    """
-    for key in get_deploy_keys_for_repo():
-        if key["key"] == public_key:
-            response = get_github_session().delete(
-                f"https://api.github.com/repos/{REPO_NAME}/keys/{key['id']}"
-            )
-            response.raise_for_status()
-            return
-
-    raise ValueError(f"Deploy key not found on repo: {public_key}")

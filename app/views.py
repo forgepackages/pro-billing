@@ -23,7 +23,6 @@ class StripeWebhookView(StripeWebhookView):
 
             project.sync_stripe()
 
-            project.ensure_pro_keys()
             project.invite_github_usernames()
 
         elif event.type == "customer.subscription.deleted":
@@ -35,7 +34,6 @@ class StripeWebhookView(StripeWebhookView):
             project.sync_stripe()
 
             project.remove_github_usernames()
-            project.remove_pro_keys()
 
 
 class QuickstartRedirectView(View):

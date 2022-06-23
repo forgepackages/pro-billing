@@ -37,19 +37,6 @@ class ProjectCreateView(BaseLoggedInViewMixin, generic.CreateView):
         return reverse("projects:terms", kwargs={"uuid": self.object.uuid})
 
 
-class ProjectKeysView(BaseLoggedInViewMixin, ProjectDetailMixin, generic.DetailView):
-    template_name = "projects/project_keys.html"
-
-    def get_html_title(self):
-        return f"{self.object} deploy key"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["private_key"] = self.object.pro_private_key
-        context["public_key"] = self.object.pro_public_key
-        return context
-
-
 class ProjectTokenView(BaseLoggedInViewMixin, ProjectDetailMixin, generic.DetailView):
     template_name = "projects/project_token.html"
 

@@ -6,12 +6,8 @@ from django.db import models
 from forge.models import TimestampModel, UUIDModel
 from forgepro.stripe.models import StripeModel
 
-from github import (
-    add_deploy_key_to_repo,
-    invite_username_to_repo,
-    remove_deploy_key_from_repo,
-    remove_username_from_repo,
-)
+from github import invite_username_to_repo, remove_username_from_repo
+from packages.models import Package
 
 
 class Project(TimestampModel, UUIDModel, StripeModel):
@@ -27,9 +23,6 @@ class Project(TimestampModel, UUIDModel, StripeModel):
     terms_accepted_by = models.ForeignKey(
         "users.User", on_delete=models.SET_NULL, null=True, blank=True
     )
-
-    pro_private_key = models.TextField(blank=True)
-    pro_public_key = models.TextField(blank=True)
 
     packages_token = models.UUIDField(default=uuid.uuid4)
 
@@ -57,57 +50,17 @@ class Project(TimestampModel, UUIDModel, StripeModel):
         self.save()
 
     def invite_github_usernames(self):
-        for username in self.github_usernames:
-            invite_username_to_repo(username)
+        for package in Package.objects.all():
+            for username in self.github_usernames:
+                invite_username_to_repo(username, package.repo_full_name)
 
     def remove_github_usernames(self):
-        for username in self.github_usernames:
-            has_other_projects = (
-                Project.objects.exclude(id=self.id)
-                .filter(status="active", github_usernames__icontains=username)
-                .exists()
-            )
-            if not has_other_projects:
-                remove_username_from_repo(username)
-
-    def ensure_pro_keys(self):
-        if not self.pro_private_key or not self.pro_public_key:
-            self.create_pro_keys()
-
-    def create_pro_keys(self):
-        self.pro_private_key, self.pro_public_key = generate_ssh_key()
-        add_deploy_key_to_repo(self.pro_public_key, f"project:{self.uuid}")
-        self.save()
-
-    def remove_pro_keys(self):
-        remove_deploy_key_from_repo(self.pro_public_key)
-        self.pro_private_key = ""
-        self.pro_public_key = ""
-        self.save()
-
-
-def generate_ssh_key():
-    from cryptography.hazmat.backends import default_backend as crypto_default_backend
-    from cryptography.hazmat.primitives import serialization as crypto_serialization
-    from cryptography.hazmat.primitives.asymmetric import rsa
-
-    key = rsa.generate_private_key(
-        backend=crypto_default_backend(), public_exponent=65537, key_size=2048
-    )
-
-    private_key = key.private_bytes(
-        crypto_serialization.Encoding.PEM,
-        crypto_serialization.PrivateFormat.PKCS8,
-        crypto_serialization.NoEncryption(),
-    ).decode("utf-8")
-
-    public_key = (
-        key.public_key()
-        .public_bytes(
-            crypto_serialization.Encoding.OpenSSH,
-            crypto_serialization.PublicFormat.OpenSSH,
-        )
-        .decode("utf-8")
-    )
-
-    return private_key, public_key
+        for package in Package.objects.all():
+            for username in self.github_usernames:
+                has_other_projects = (
+                    Project.objects.exclude(id=self.id)
+                    .filter(status="active", github_usernames__icontains=username)
+                    .exists()
+                )
+                if not has_other_projects:
+                    remove_username_from_repo(username, package.repo_full_name)

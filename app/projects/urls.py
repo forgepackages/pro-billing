@@ -21,11 +21,6 @@ urlpatterns = [
         name="terms",
     ),
     path(
-        "detail/<uuid:uuid>/keys/",
-        views.ProjectKeysView.as_view(),
-        name="keys",
-    ),
-    path(
         "detail/<uuid:uuid>/token/",
         views.ProjectTokenView.as_view(),
         name="token",
