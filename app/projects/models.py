@@ -35,7 +35,7 @@ class Project(TimestampModel, UUIDModel, StripeModel):
     status = models.CharField(max_length=255, default="")
 
     class Meta:
-        ordering = ["-name"]
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
