@@ -1,8 +1,5 @@
-from importlib.metadata import metadata
-
 from django.conf import settings
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
+from django.core.exceptions import PermissionDenied
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
@@ -51,6 +48,21 @@ class ProjectKeysView(BaseLoggedInViewMixin, ProjectDetailMixin, generic.DetailV
         context["private_key"] = self.object.pro_private_key
         context["public_key"] = self.object.pro_public_key
         return context
+
+
+class ProjectTokenView(BaseLoggedInViewMixin, ProjectDetailMixin, generic.DetailView):
+    template_name = "projects/project_token.html"
+
+    def get_html_title(self):
+        return f"{self.object} token"
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+
+        if not obj.is_active:
+            raise PermissionDenied("Project is not active")
+
+        return obj
 
 
 class ProjectTermsView(BaseLoggedInViewMixin, ProjectDetailMixin, generic.UpdateView):

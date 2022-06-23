@@ -44,6 +44,10 @@ class Project(TimestampModel, UUIDModel, StripeModel):
     def __str__(self):
         return self.name
 
+    @property
+    def is_active(self):
+        return self.status == "active"
+
     def sync_stripe(self):
         subscription = self.get_stripe_object()
         if subscription:

@@ -27,7 +27,7 @@
             <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
             <!-- <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">GitHub usernames</th> -->
             <!-- <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">License</th> -->
-            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Deploy keys</th>
+            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Tokens</th>
             <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Subscription</th>
         </tr>
     </thead>
@@ -60,12 +60,12 @@
                 {% endif %}
             </td> -->
             <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                {% if project.pro_private_key %}
-                <a href="{% url 'projects:keys' project.uuid %}" class="flex items-center hover:underline">
+                {% if project.status == 'active' %}
+                <a href="{% url 'projects:token' project.uuid %}" class="flex items-center hover:underline">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clip-rule="evenodd" />
                     </svg>
-                    View key
+                    View token
                 </a>
                 {% else %}
                 -
