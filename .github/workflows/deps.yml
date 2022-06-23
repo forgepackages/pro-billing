@@ -9,25 +9,21 @@ jobs:
   deps:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-
-    - uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - run: pipx install poetry
+    - uses: actions/setup-python@v4
       with:
         python-version: "3.9"
-
-    - name: Set up Forge Pro repo access
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.FORGE_PRO_PRIVATE_KEY }}
-
+        cache: poetry
     - name: Install dependencies
+      env:
+        POETRY_HTTP_BASIC_FORGEPACKAGES_USERNAME: ${{ secrets.FORGEPACKAGES_PROJECT }}
+        POETRY_HTTP_BASIC_FORGEPACKAGES_PASSWORD: ${{ secrets.FORGEPACKAGES_TOKEN }}
       run: |
-        pip install -U pip poetry
-        POETRY_VIRTUALENVS_IN_PROJECT=true poetry install
-
+        poetry env use 3.9
+        poetry install
     - name: Install deps
       run: curl https://deps.app/install.sh | bash -s -- -b $HOME/bin
-
     - name: Run deps
       run: $HOME/bin/deps ci
       env:

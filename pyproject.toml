@@ -7,14 +7,17 @@ authors = []
 [tool.poetry.dependencies]
 python = "^3.9"
 
-forge = "<1.0.0"
+forge = "^0.14.0"
+forge-pro = "^0.1.0"
 
 PyJWT = "^2.3.0"
 cryptography = "^37.0.2"
-forge-pro = {git = "ssh://git@github.com/forgepackages/forge-pro.git", rev = "bb7824d"}
 django-hosts = "^5.1"
-
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "forgepackages"
+url = "https://pypi.forgepackages.com/"
