@@ -232,7 +232,7 @@ python-versions = "*"
 
 [[package]]
 name = "forge"
-version = "0.14.0"
+version = "0.15.0"
 description = "Quickly build a professional web app using Django."
 category = "main"
 optional = false
@@ -243,12 +243,12 @@ click = ">=8.1.0,<9.0.0"
 dj-database-url = ">=0.5.0,<0.6.0"
 Django = ">=4.0,<5.0"
 django-widget-tweaks = ">=1.4.12,<2.0.0"
-forge-core = ">=0.1.1,<0.2.0"
-forge-db = ">=0.1.1,<0.2.0"
-forge-format = ">=0.1.0,<0.2.0"
-forge-heroku = ">=0.1.0,<0.2.0"
-forge-tailwind = ">=0.1.0,<0.2.0"
-forge-work = ">=0.1.0,<0.2.0"
+forge-core = "<1.0.0"
+forge-db = "<1.0.0"
+forge-format = "<1.0.0"
+forge-heroku = "<1.0.0"
+forge-tailwind = "<1.0.0"
+forge-work = "<1.0.0"
 hiredis = ">=2.0.0,<3.0.0"
 ipdb = ">=0.13.9,<0.14.0"
 pytest = ">=7.0.0,<8.0.0"
@@ -907,7 +907,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "f6bff3e071a3ea1cff71a0c7df0f1f883ee1ddb84584d9c367df7eeba22032f4"
+content-hash = "8857effb12d621b4f64e46be08a8db7fadc9d2a047573e8de42466d51140ba53"
 
 [metadata.files]
 appnope = [
@@ -1098,8 +1098,8 @@ executing = [
     {file = "executing-0.8.3.tar.gz", hash = "sha256:c6554e21c6b060590a6d3be4b82fb78f8f0194d809de5ea7df1c093763311501"},
 ]
 forge = [
-    {file = "forge-0.14.0-py3-none-any.whl", hash = "sha256:6f627e9f9c6e0d27cc1050931fa2b7ab86154160f3d654a7b43d38a08e1215e3"},
-    {file = "forge-0.14.0.tar.gz", hash = "sha256:b8d801efd375321f423e3ddd5a4389172a4ac65d3e6c91ee22cb6b2ba379c2cc"},
+    {file = "forge-0.15.0-py3-none-any.whl", hash = "sha256:11950858aea5759ece433210f39fea0123668ecea67e2058499810e405ea0d09"},
+    {file = "forge-0.15.0.tar.gz", hash = "sha256:d2ad7c09be9187589194c4060b633c67b09679a688261c013f71f69c96b0e213"},
 ]
 forge-core = [
     {file = "forge-core-0.1.1.tar.gz", hash = "sha256:06b936bec786284be602bf581400a5d7f6b01c24767b901352e9bd329de9b1d0"},
