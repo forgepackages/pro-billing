@@ -1,5 +1,5 @@
 from forge.default_settings import *
-from forgepro.default_settings import *
+from forgepro.default_settings import FORGEPRO_APPS, FORGEPRO_MIDDLEWARE
 
 INSTALLED_APPS = (
     INSTALLED_APPS

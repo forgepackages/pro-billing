@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from forge.models import TimestampModel, UUIDModel
-from forgepro.stripe.models import StripeModel
+from forgestripe.models import StripeModel
 
 from github import invite_username_to_repo, remove_username_from_repo
 from packages.models import Package

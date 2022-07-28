@@ -259,7 +259,7 @@ whitenoise = ">=6.0.0,<7.0.0"
 
 [[package]]
 name = "forge-core"
-version = "0.1.1"
+version = "0.4.0"
 description = "Core library for Forge"
 category = "main"
 optional = false
@@ -300,6 +300,19 @@ isort = ">=5.10.1,<6.0.0"
 python-dotenv = ">=0.20.0,<0.21.0"
 
 [[package]]
+name = "forge-googleanalytics"
+version = "0.1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.forgepackages.com"
+reference = "forgepackages"
+
+[[package]]
 name = "forge-heroku"
 version = "0.1.2"
 description = "Work library for Forge"
@@ -314,16 +327,109 @@ gunicorn = ">=20.1.0,<21.0.0"
 psycopg2-binary = ">=2.9.3,<3.0.0"
 
 [[package]]
+name = "forge-impersonate"
+version = "0.1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.forgepackages.com"
+reference = "forgepackages"
+
+[[package]]
 name = "forge-pro"
-version = "0.1.1"
+version = "0.2.0"
 description = ""
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 
 [package.dependencies]
-sentry-sdk = ">=1.5.1,<2.0.0"
-stripe = ">=2.65.0,<3.0.0"
+forge-googleanalytics = "<1.0.0"
+forge-impersonate = "<1.0.0"
+forge-querystats = "<1.0.0"
+forge-requestlog = "<1.0.0"
+forge-sentry = "<1.0.0"
+forge-stafftoolbar = "<1.0.0"
+forge-stripe = "<1.0.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.forgepackages.com"
+reference = "forgepackages"
+
+[[package]]
+name = "forge-querystats"
+version = "0.1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.forgepackages.com"
+reference = "forgepackages"
+
+[[package]]
+name = "forge-requestlog"
+version = "0.1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+forge-core = ">=0.4.0,<0.5.0"
+requests = ">=2.0.0,<3.0.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.forgepackages.com"
+reference = "forgepackages"
+
+[[package]]
+name = "forge-sentry"
+version = "0.1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+sentry-sdk = ">=1.8.0,<2.0.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.forgepackages.com"
+reference = "forgepackages"
+
+[[package]]
+name = "forge-stafftoolbar"
+version = "0.1.0"
+description = "Staff toolbar for Forge"
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.forgepackages.com"
+reference = "forgepackages"
+
+[[package]]
+name = "forge-stripe"
+version = "0.1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+stripe = ">=3.5.0,<4.0.0"
 
 [package.source]
 type = "legacy"
@@ -750,7 +856,7 @@ use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "sentry-sdk"
-version = "1.6.0"
+version = "1.9.0"
 description = "Python client for Sentry (https://sentry.io)"
 category = "main"
 optional = false
@@ -768,6 +874,7 @@ celery = ["celery (>=3)"]
 chalice = ["chalice (>=1.16.0)"]
 django = ["django (>=1.8)"]
 falcon = ["falcon (>=1.4)"]
+fastapi = ["fastapi (>=0.79.0)"]
 flask = ["flask (>=0.11)", "blinker (>=1.1)"]
 httpx = ["httpx (>=0.16.0)"]
 pure_eval = ["pure-eval", "executing", "asttokens"]
@@ -776,6 +883,7 @@ quart = ["quart (>=0.16.1)", "blinker (>=1.1)"]
 rq = ["rq (>=0.6)"]
 sanic = ["sanic (>=0.8)"]
 sqlalchemy = ["sqlalchemy (>=1.2)"]
+starlette = ["starlette (>=0.19.1)"]
 tornado = ["tornado (>=5)"]
 
 [[package]]
@@ -812,7 +920,7 @@ tests = ["pytest", "typeguard", "pygments", "littleutils", "cython"]
 
 [[package]]
 name = "stripe"
-version = "2.76.0"
+version = "3.5.0"
 description = "Python bindings for the Stripe API"
 category = "main"
 optional = false
@@ -907,7 +1015,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "8857effb12d621b4f64e46be08a8db7fadc9d2a047573e8de42466d51140ba53"
+content-hash = "68e4580ed3e7458a8562afe41719b69ed6743a7ce41ae208f755475f054fb39b"
 
 [metadata.files]
 appnope = [
@@ -1085,10 +1193,7 @@ django = [
     {file = "Django-4.0.5-py3-none-any.whl", hash = "sha256:502ae42b6ab1b612c933fb50d5ff850facf858a4c212f76946ecd8ea5b3bf2d9"},
     {file = "Django-4.0.5.tar.gz", hash = "sha256:f7431a5de7277966f3785557c3928433347d998c1e6459324501378a291e5aab"},
 ]
-django-hosts = [
-    {file = "django-hosts-5.1.tar.gz", hash = "sha256:395ea0017389eb509ac8df58fa8a93c287935a9bf47cb11d36540ee241b2e81b"},
-    {file = "django_hosts-5.1-py3-none-any.whl", hash = "sha256:56d14958defcd513098953931ea36e691a6a5b87340d281ff818bc81f0810075"},
-]
+django-hosts = []
 django-widget-tweaks = [
     {file = "django-widget-tweaks-1.4.12.tar.gz", hash = "sha256:9bfc5c705684754a83cc81da328b39ad1b80f32bd0f4340e2a810cbab4b0c00e"},
     {file = "django_widget_tweaks-1.4.12-py3-none-any.whl", hash = "sha256:fe6b17d5d595c63331f300917980db2afcf71f240ab9341b954aea8f45d25b9a"},
@@ -1102,8 +1207,8 @@ forge = [
     {file = "forge-0.15.0.tar.gz", hash = "sha256:d2ad7c09be9187589194c4060b633c67b09679a688261c013f71f69c96b0e213"},
 ]
 forge-core = [
-    {file = "forge-core-0.1.1.tar.gz", hash = "sha256:06b936bec786284be602bf581400a5d7f6b01c24767b901352e9bd329de9b1d0"},
-    {file = "forge_core-0.1.1-py3-none-any.whl", hash = "sha256:dde898facfa3e17872785253208edab2e531a25b945731c52eb2dd93a8455803"},
+    {file = "forge-core-0.4.0.tar.gz", hash = "sha256:a0c01321638049536ec7b4aa7293c3716b615f846a6046281ecf69853d469423"},
+    {file = "forge_core-0.4.0-py3-none-any.whl", hash = "sha256:cf45e2753ccdcd9b8de8cde558c8f403b31a04c0e0b2703fd5aec64bc3a589d3"},
 ]
 forge-db = [
     {file = "forge-db-0.1.1.tar.gz", hash = "sha256:801d8df09236ae429d71d4cf6483b5043c90d5ac987d7970f401198d28e88ae6"},
@@ -1113,11 +1218,18 @@ forge-format = [
     {file = "forge-format-0.1.0.tar.gz", hash = "sha256:dc298ac315e373ef34ac2ba0a753daa9b0d6c23a8c435f83a45d6134d3e43ee3"},
     {file = "forge_format-0.1.0-py3-none-any.whl", hash = "sha256:4d26dcaecfd8931ddf0b078b5d88e6bdfa06618c341a8f7a4d2227fc363483ae"},
 ]
+forge-googleanalytics = []
 forge-heroku = [
     {file = "forge-heroku-0.1.2.tar.gz", hash = "sha256:892f574262b1aba56519577249982121c8815f3edded3aa431fffb5386c74ee4"},
     {file = "forge_heroku-0.1.2-py3-none-any.whl", hash = "sha256:53f10ea53e11305b2e53efba609297f27d927489ed70b2a393ad2931528f03d4"},
 ]
+forge-impersonate = []
 forge-pro = []
+forge-querystats = []
+forge-requestlog = []
+forge-sentry = []
+forge-stafftoolbar = []
+forge-stripe = []
 forge-tailwind = [
     {file = "forge-tailwind-0.1.0.tar.gz", hash = "sha256:ac3db531294784f0050f984bb265dc8c39da75d9ec96244dcca43a8937d66cf0"},
     {file = "forge_tailwind-0.1.0-py3-none-any.whl", hash = "sha256:b18dfbfc3f588abe7164f4c109b89accc7d08db9015d2e68f887a0abb9dace91"},
@@ -1347,8 +1459,8 @@ requests = [
     {file = "requests-2.28.1.tar.gz", hash = "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983"},
 ]
 sentry-sdk = [
-    {file = "sentry-sdk-1.6.0.tar.gz", hash = "sha256:b82ad57306d5546713f15d5d70daea0408cf7f998c7566db16e0e6257e51e561"},
-    {file = "sentry_sdk-1.6.0-py2.py3-none-any.whl", hash = "sha256:ddbd191b6f4e696b7845b4d87389898ae1207981faf114f968a57363aa6be03c"},
+    {file = "sentry-sdk-1.9.0.tar.gz", hash = "sha256:f185c53496d79b280fe5d9d21e6572aee1ab802d3354eb12314d216cfbaa8d30"},
+    {file = "sentry_sdk-1.9.0-py2.py3-none-any.whl", hash = "sha256:60b13757d6344a94bf0ccb3c0a006c4de77daab09871b30fbbd05d5ec24e54fb"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
@@ -1362,10 +1474,7 @@ stack-data = [
     {file = "stack_data-0.3.0-py3-none-any.whl", hash = "sha256:aa1d52d14d09c7a9a12bb740e6bdfffe0f5e8f4f9218d85e7c73a8c37f7ae38d"},
     {file = "stack_data-0.3.0.tar.gz", hash = "sha256:77bec1402dcd0987e9022326473fdbcc767304892a533ed8c29888dacb7dddbc"},
 ]
-stripe = [
-    {file = "stripe-2.76.0-py2.py3-none-any.whl", hash = "sha256:756bf6c1206f438d1fa23bb90cdf1233c9383478f854f2720a8a3e1eaf1f715b"},
-    {file = "stripe-2.76.0.tar.gz", hash = "sha256:fd3fc6935c3b6189967191607b6f38ebe490005a590b4d0d43fbe3aba45deca8"},
-]
+stripe = []
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},

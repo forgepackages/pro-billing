@@ -22,7 +22,7 @@ from users.views import SignupView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("impersonate/", include("forgepro.impersonate.urls")),
+    path("impersonate/", include("forgeimpersonate.urls")),
     path("signup/", SignupView.as_view(), name="signup"),
     path("quickstart.py", views.QuickstartRedirectView.as_view()),
     path("pypi/", include("packages.urls")),

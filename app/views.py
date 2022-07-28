@@ -3,8 +3,8 @@ from django.http import HttpResponseRedirect
 from django.views import View
 
 from forge.views.mixins import HTMLTitleMixin
-from forgepro.googleanalytics.events import GoogleAnalyticsEvent
-from forgepro.stripe.views import StripeWebhookView
+from forgegoogleanalytics.events import GoogleAnalyticsEvent
+from forgestripe.views import StripeWebhookView
 
 from projects.models import Project
 

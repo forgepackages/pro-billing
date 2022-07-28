@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.views import generic
 
 import stripe
-from forgepro.stripe.views import StripeCheckoutView, StripePortalView
+from forgestripe.views import StripeCheckoutView, StripePortalView
 
 from views import BaseLoggedInViewMixin
 
