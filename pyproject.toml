@@ -7,7 +7,7 @@ authors = []
 [tool.poetry.dependencies]
 python = "^3.9"
 
-forge = "^0.18.6"
+forge = "^0.21.2"
 forge-pro = "^0.2.0"
 
 PyJWT = "^2.3.0"
