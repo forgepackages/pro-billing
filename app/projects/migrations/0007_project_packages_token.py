@@ -7,13 +7,13 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0006_project_pro_private_key_project_pro_public_key'),
+        ("projects", "0006_project_pro_private_key_project_pro_public_key"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='packages_token',
+            model_name="project",
+            name="packages_token",
             field=models.UUIDField(default=uuid.uuid4, editable=False),
         ),
     ]

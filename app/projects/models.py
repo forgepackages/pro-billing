@@ -3,7 +3,7 @@ import uuid
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-from forge.models import TimestampModel, UUIDModel
+from models import TimestampModel, UUIDModel
 from forgestripe.models import StripeModel
 
 from github import invite_username_to_repo, remove_username_from_repo

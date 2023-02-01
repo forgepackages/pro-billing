@@ -14,7 +14,7 @@ def forward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0008_alter_project_name_alter_project_packages_token'),
+        ("projects", "0008_alter_project_name_alter_project_packages_token"),
     ]
 
     operations = [

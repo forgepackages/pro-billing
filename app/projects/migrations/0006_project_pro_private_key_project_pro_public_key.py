@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0005_project_status'),
+        ("projects", "0005_project_status"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='pro_private_key',
+            model_name="project",
+            name="pro_private_key",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='project',
-            name='pro_public_key',
+            model_name="project",
+            name="pro_public_key",
             field=models.TextField(blank=True),
         ),
     ]

@@ -7,18 +7,18 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0007_project_packages_token'),
+        ("projects", "0007_project_packages_token"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='name',
+            model_name="project",
+            name="name",
             field=models.SlugField(max_length=255, unique=True),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='packages_token',
+            model_name="project",
+            name="packages_token",
             field=models.UUIDField(default=uuid.uuid4),
         ),
     ]

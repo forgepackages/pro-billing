@@ -7,13 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0003_project_github_usernames'),
+        ("projects", "0003_project_github_usernames"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='github_usernames',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.SlugField(max_length=255), blank=True, null=True, size=None),
+            model_name="project",
+            name="github_usernames",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.SlugField(max_length=255),
+                blank=True,
+                null=True,
+                size=None,
+            ),
         ),
     ]

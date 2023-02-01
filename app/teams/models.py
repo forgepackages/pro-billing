@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 
-from forge.models import TimestampModel, UUIDModel
+from models import TimestampModel, UUIDModel
 from forgestripe.models import StripeModel
 
 

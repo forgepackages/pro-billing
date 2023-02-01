@@ -7,13 +7,13 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_user_uuid_alter_user_email'),
+        ("users", "0002_user_uuid_alter_user_email"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='packages_token',
+            model_name="user",
+            name="packages_token",
             field=models.UUIDField(default=uuid.uuid4),
         ),
     ]
