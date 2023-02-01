@@ -477,14 +477,14 @@ files = [
 
 [[package]]
 name = "forge"
-version = "0.21.2"
+version = "0.22.0"
 description = "Quickly build a professional web app using Django."
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "forge-0.21.2-py3-none-any.whl", hash = "sha256:8c4c86fca084b9f280211968376321e85348dc1f10e516e4ad138fbfc9dd0173"},
-    {file = "forge-0.21.2.tar.gz", hash = "sha256:486da532602af85db74d185c12259c9cdf86c2728d28ed10c27bcbc903ef8c6b"},
+    {file = "forge-0.22.0-py3-none-any.whl", hash = "sha256:8a7f0dfc50add1e2770a01dd4ed6a27fe9c144824cd64bcadc0f05fbbccef7dc"},
+    {file = "forge-0.22.0.tar.gz", hash = "sha256:826bb5e6aeadcacff9254baa58ffd7eaf671b12ef5ced07b0ddd81a51c9cd801"},
 ]
 
 [package.dependencies]
@@ -1647,4 +1647,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "47ffbf01b19c59351c2e7277eecb266043de6d3d197ec4f0d2cd7a7c6aaaf372"
+content-hash = "86df69fe0316d514463a72d502e3a1b83e4bf1900650ba215da33b94b9901057"
